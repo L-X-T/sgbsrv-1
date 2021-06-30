@@ -16,6 +16,11 @@ export class FlightSearchComponent implements OnInit {
 
   message: string;
 
+  basket: object = {
+    '3': true,
+    '5': true
+  };
+
   constructor(private flightService: FlightService) {}
 
   ngOnInit(): void {}

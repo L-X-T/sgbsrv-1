@@ -14,6 +14,8 @@ export class FlightSearchComponent implements OnInit {
   flights: Array<Flight> = [];
   selectedFlight: Flight;
 
+  message: string;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {}
@@ -37,5 +39,22 @@ export class FlightSearchComponent implements OnInit {
 
   select(f: Flight): void {
     this.selectedFlight = f;
+  }
+
+  save(): void {
+    const url = 'http://www.angular.at/api/flight';
+
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+
+    this.http.post<Flight>(url, this.selectedFlight, { headers }).subscribe({
+      next: (flight) => {
+        this.selectedFlight = flight;
+        this.message = 'Success!';
+      },
+      error: (errResponse) => {
+        console.error('Error', errResponse);
+        this.message = 'Error: ';
+      }
+    });
   }
 }

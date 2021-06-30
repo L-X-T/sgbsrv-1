@@ -8,9 +8,8 @@ describe('FlightSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FlightSearchComponent ]
-    })
-    .compileComponents();
+      declarations: [FlightSearchComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

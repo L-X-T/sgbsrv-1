@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Flight } from '../entities/flight';
+import { Flight } from '../../entities/flight';
 
 @Injectable({ providedIn: 'root' })
 export class FlightService {

@@ -1,0 +1,11 @@
+{
+  "/api/": {
+    "target": "http://angular.at/api/",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/": "/api/"
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

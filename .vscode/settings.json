@@ -16,7 +16,16 @@
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "peacock.color": "#dd0531",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
+  "eslint.workingDirectories": [
+    "."
+  ],
+  "prettier.configPath": ".prettierrc",
+  "prettier.documentSelectors": [
+    "{**/*,*}.{js,ts,jsx,tsx}"
+  ],
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   }

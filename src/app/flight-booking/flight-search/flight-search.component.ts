@@ -9,7 +9,7 @@ import { FlightService } from './flight.service';
   styleUrls: ['./flight-search.component.css']
 })
 export class FlightSearchComponent {
-  from = 'Graz';
+  from = '';
   to = 'Hamburg';
   flights: Flight[] = [];
   selectedFlight: Flight;

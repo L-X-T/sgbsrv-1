@@ -4,19 +4,53 @@
   </div>
 
   <div class="content">
-    <form>
+    <form #form="ngForm">
       <div class="form-group">
         <label>From:</label>
-        <input [(ngModel)]="from" name="from" class="form-control">
+        <input [(ngModel)]="from"
+               autocomplete="false"
+               name="from"
+               class="form-control"
+               required="required"
+               minlength="3"
+               maxlength="15"
+               pattern="[a-zA-ZäöüÄÖÜß ]*">
       </div>
+
+      <div *ngIf="form?.controls['from']?.invalid"> From is invalid. </div>
+
+      <div *ngIf="form?.controls['from']?.hasError('required')"> From is required. </div>
+
+      <div *ngIf="form?.controls['from']?.hasError('minlength')"> From minlength is 3. </div>
+
+      <div *ngIf="form?.controls['from']?.hasError('maxlength')"> From maxlength is 15. </div>
+
+      <div *ngIf="form?.controls['from']?.hasError('pattern')"> From has invalid input. </div>
+
       <div class="form-group">
         <label>To:</label>
-        <input [(ngModel)]="to" name="to" class="form-control">
+        <input [(ngModel)]="to"
+               name="to"
+               class="form-control"
+               required="required"
+               minlength="3"
+               maxlength="15"
+               pattern="[a-zA-ZäöüÄÖÜß ]*">
       </div>
+
+      <div *ngIf="form?.controls['to']?.invalid"> To is invalid. </div>
+
+      <div *ngIf="form?.controls['to']?.hasError('required')"> To is required. </div>
+
+      <div *ngIf="form?.controls['to']?.hasError('minlength')"> To minlength is 3. </div>
+
+      <div *ngIf="form?.controls['to']?.hasError('maxlength')"> To maxlength is 15. </div>
+
+      <div *ngIf="form?.controls['to']?.hasError('pattern')"> To has invalid input. </div>
 
       <div class="form-group">
         <button
-          [disabled]="!to || !from"
+          [disabled]="!to || !from || form.invalid"
           (click)="search()"
           class="btn btn-default">Search</button>
       </div>

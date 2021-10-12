@@ -2,9 +2,9 @@
 
 <div *ngIf="errors && errors['required']"> {{ fieldLabel }} is required. </div>
 
-<div *ngIf="errors && errors['minlength']"> {{ fieldLabel }} minlength is 3. </div>
+<div *ngIf="errors && errors['minlength']"> {{ fieldLabel }} is too short. </div>
 
-<div *ngIf="errors && errors['maxlength']"> {{ fieldLabel }} maxlength is 15. </div>
+<div *ngIf="errors && errors['maxlength']"> {{ fieldLabel }} is too long. </div>
 
 <div *ngIf="errors && errors['pattern']"> {{ fieldLabel }} has invalid input. </div>
 

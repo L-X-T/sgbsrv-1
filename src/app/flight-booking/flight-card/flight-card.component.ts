@@ -10,8 +10,6 @@ import { Flight } from '../../entities/flight';
 export class FlightCardComponent implements OnInit, OnChanges {
   debug = false;
 
-  constructor() {}
-
   @Input() item: Flight;
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();

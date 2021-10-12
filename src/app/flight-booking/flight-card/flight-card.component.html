@@ -11,8 +11,9 @@
       <button *ngIf="!selected" class="btn btn-default" (click)="select()">Select</button>
       <button *ngIf="selected" class="btn btn-default" (click)="deselect()">Remove</button>
 
-      <flight-status-toggle style="margin-left: 10px" [(status)]="item.delayed"></flight-status-toggle>
+      <flight-status-toggle style="margin: 0 10px" [(status)]="item.delayed"></flight-status-toggle>
+
+      <button class="btn btn-default" (click)="edit.emit()">Edit</button>
     </p>
   </div>
 </div>
-

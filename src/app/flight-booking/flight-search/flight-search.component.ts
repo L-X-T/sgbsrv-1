@@ -9,10 +9,10 @@ import { FlightService } from './flight.service';
   styleUrls: ['./flight-search.component.css']
 })
 export class FlightSearchComponent {
-  from = '';
+  from = 'Graz';
   to = 'Hamburg';
   flights: Flight[] = [];
-  selectedFlight: Flight;
+  flightToEdit: Flight;
 
   message: string;
 
@@ -34,14 +34,10 @@ export class FlightSearchComponent {
     });
   }
 
-  select(f: Flight): void {
-    this.selectedFlight = f;
-  }
-
-  save(): void {
-    this.flightService.save(this.selectedFlight).subscribe({
+  /*save(): void {
+    this.flightService.save(this.flightToEdit).subscribe({
       next: (flight) => {
-        this.selectedFlight = flight;
+        this.flightToEdit = flight;
         this.message = 'Success!';
       },
       error: (errResponse) => {
@@ -49,5 +45,5 @@ export class FlightSearchComponent {
         this.message = 'Error!';
       }
     });
-  }
+  }*/
 }

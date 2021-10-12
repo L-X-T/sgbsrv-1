@@ -5,14 +5,6 @@
   </div>
 
   <div class="form-group">
-    <label>Date:</label>
-    <input formControlName="date" class="form-control">
-  </div>
-
-  <flight-validation-errors [errors]="editForm?.controls['date']?.errors" [fieldLabel]="'Date'">
-  </flight-validation-errors>
-
-  <div class="form-group">
     <label>From:</label>
     <input formControlName="from" class="form-control">
   </div>
@@ -26,6 +18,14 @@
   </div>
 
   <flight-validation-errors [errors]="editForm?.controls['to']?.errors" [fieldLabel]="'To'">
+  </flight-validation-errors>
+
+  <div class="form-group">
+    <label>Date:</label>
+    <input formControlName="date" class="form-control">
+  </div>
+
+  <flight-validation-errors [errors]="editForm?.controls['date']?.errors" [fieldLabel]="'Date'">
   </flight-validation-errors>
 
   <div class="form-group">

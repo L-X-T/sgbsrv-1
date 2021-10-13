@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { FlightBookingModule } from './flight-booking/flight-booking.module';
+// import { FlightBookingModule } from './flight-booking/flight-booking.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -18,7 +18,7 @@ import { APP_ROUTES } from './app.routes';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    FlightBookingModule,
+    // FlightBookingModule,
     RouterModule.forRoot(
       APP_ROUTES
       // { useHash: true, enableTracing: true }

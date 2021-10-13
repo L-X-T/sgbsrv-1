@@ -90,7 +90,7 @@ export class FlightEditComponent implements OnChanges, OnInit {
           this.patchFormValue();
 
           setTimeout(() => {
-            this.router.navigate(['/flight-edit', this.flight.id, { showDetails: true }]);
+            this.router.navigate(['/flight-booking', 'flight-search']);
           }, 3000);
         },
         error: (errResponse) => {

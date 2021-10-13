@@ -6,6 +6,11 @@ import { FlightEditComponent } from './flight-edit/flight-edit.component';
 
 export const FLIGHT_BOOKING_ROUTES: Routes = [
   {
+    path: '',
+    redirectTo: 'flight-search',
+    pathMatch: 'full'
+  },
+  {
     path: 'flight-edit/:id',
     component: FlightEditComponent
   },

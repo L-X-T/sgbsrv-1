@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 
 // import { FlightBookingModule } from './flight-booking/flight-booking.module';
 
@@ -20,7 +20,10 @@ import { APP_ROUTES } from './app.routes';
     FormsModule,
     // FlightBookingModule,
     RouterModule.forRoot(
-      APP_ROUTES
+      APP_ROUTES,
+      {
+        preloadingStrategy: PreloadAllModules
+      }
       // { useHash: true, enableTracing: true }
     )
   ],

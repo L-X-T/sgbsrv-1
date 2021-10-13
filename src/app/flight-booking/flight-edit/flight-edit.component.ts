@@ -67,8 +67,10 @@ export class FlightEditComponent implements OnChanges, OnInit {
   save(): void {
     this.message = 'Is saving ...';
 
+    const flightToSave: Flight = this.editForm.value;
+
     this.flightService
-      .save(this.editForm.value)
+      .save(flightToSave)
       .pipe(delay(3000))
       .subscribe({
         next: (flight) => {
@@ -87,7 +89,9 @@ export class FlightEditComponent implements OnChanges, OnInit {
           this.message = 'Success saving! Navigating ...';
           this.patchFormValue();
 
-          setTimeout(() => this.router.navigate(['/flight-search']), 3000);
+          setTimeout(() => {
+            this.router.navigate(['/flight-edit', this.flight.id, { showDetails: true }]);
+          }, 3000);
         },
         error: (errResponse) => {
           console.error('Error', errResponse);

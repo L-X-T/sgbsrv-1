@@ -4,6 +4,8 @@ import { Flight } from '../../entities/flight';
 import { FlightService } from '../shared/services/flight.service';
 import { pattern } from '../../shared/global';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'flight-search',
   templateUrl: './flight-search.component.html',
@@ -23,7 +25,7 @@ export class FlightSearchComponent {
     5: true
   };
 
-  constructor(private flightService: FlightService) {}
+  constructor(private flightService: FlightService, private router: Router) {}
 
   search(): void {
     this.flightService.find(this.from, this.to).subscribe({
@@ -54,5 +56,9 @@ export class FlightSearchComponent {
     // console.log(updatedFlight);
 
     this.flights = this.flights.map((flight) => (flight.id === updatedFlight.id ? updatedFlight : flight));
+  }
+
+  onEdit(id: number) {
+    this.router.navigate(['/flight-edit', id, { showDetails: true }]);
   }
 }

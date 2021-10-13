@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 import { FlightService } from '../flight-search/flight.service';
 import { Flight } from '../../entities/flight';
 import { validateCity } from '../shared/validation/city-validator';
@@ -14,12 +16,15 @@ export class FlightEditComponent implements OnChanges, OnInit {
   @Input() flight: Flight;
 
   @Output() flightChange = new EventEmitter<Flight>();
+  debug = true;
+  id: string;
+  showDetails: string;
 
   editForm: FormGroup;
 
   message = '';
 
-  constructor(private fb: FormBuilder, private flightService: FlightService) {}
+  constructor(private fb: FormBuilder, private flightService: FlightService, private route: ActivatedRoute) {}
 
   ngOnChanges(): void {
     if (this.editForm && this.flight) {
@@ -28,6 +33,11 @@ export class FlightEditComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+      this.showDetails = params['showDetails'];
+    });
+
     this.editForm = this.fb.group({
       id: [1, [Validators.required]],
       from: [

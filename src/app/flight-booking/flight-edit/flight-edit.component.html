@@ -1,38 +1,48 @@
-<form [formGroup]="editForm">
-  <div class="form-group">
-    <label>Id:</label>
-    <input formControlName="id" class="form-control">
+<div class="card">
+  <div class="header">
+    <h1 class="title">Flight Edit</h1>
+  </div>
+  <div class="content">
+    <p>Id: {{id}}</p>
+    <p>ShowDetails: {{showDetails}}</p>
   </div>
 
-  <div class="form-group">
-    <label>From:</label>
-    <input formControlName="from" class="form-control">
-  </div>
+  <form *ngIf="editForm" [formGroup]="editForm">
+    <div class="form-group">
+      <label>Id:</label>
+      <input formControlName="id" class="form-control">
+    </div>
 
-  <flight-validation-errors [errors]="editForm?.controls['from']?.errors" [fieldLabel]="'From'">
-  </flight-validation-errors>
+    <div class="form-group">
+      <label>From:</label>
+      <input formControlName="from" class="form-control">
+    </div>
 
-  <div class="form-group">
-    <label>To:</label>
-    <input formControlName="to" class="form-control">
-  </div>
+    <flight-validation-errors [errors]="editForm?.controls['from']?.errors" [fieldLabel]="'From'">
+    </flight-validation-errors>
 
-  <flight-validation-errors [errors]="editForm?.controls['to']?.errors" [fieldLabel]="'To'">
-  </flight-validation-errors>
+    <div class="form-group">
+      <label>To:</label>
+      <input formControlName="to" class="form-control">
+    </div>
 
-  <div class="form-group">
-    <label>Date:</label>
-    <input formControlName="date" class="form-control">
-  </div>
+    <flight-validation-errors [errors]="editForm?.controls['to']?.errors" [fieldLabel]="'To'">
+    </flight-validation-errors>
 
-  <flight-validation-errors [errors]="editForm?.controls['date']?.errors" [fieldLabel]="'Date'">
-  </flight-validation-errors>
+    <div *ngIf="editForm?.hasError('roundTrip')" class="text-danger">Round trips are not allowed!</div>
 
-  <div *ngIf="editForm?.hasError('roundTrip')" class="text-danger">Round trips are not allowed!</div>
+    <div class="form-group">
+      <label>Date:</label>
+      <input formControlName="date" class="form-control">
+    </div>
 
-  <div class="form-group">
-    <button (click)="save()" class="btn btn-default">Save</button>
-  </div>
+    <flight-validation-errors [errors]="editForm?.controls['date']?.errors" [fieldLabel]="'Date'">
+    </flight-validation-errors>
 
-  <div *ngIf="message">{{ message }}</div>
-</form>
+    <div class="form-group">
+      <button (click)="save()" class="btn btn-default">Save</button>
+    </div>
+
+    <div *ngIf="message">{{ message }}</div>
+  </form>
+</div>

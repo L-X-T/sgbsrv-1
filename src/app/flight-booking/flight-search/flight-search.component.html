@@ -83,9 +83,9 @@
 
 <div *ngIf="flights.length > 0" class="row">
   <div *ngFor="let f of flights" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <!--<flight-card [item]="f" [selected]="basket[f.id]" (selectedChange)="basket[f.id] = $event">-->
-    <flight-card [item]="f" [(selected)]="basket[f.id]" (edit)="flightToEdit = f">
-    </flight-card>
+    <!--<flight-card [item]="f" [selected]="basket[f.id]" (selectedChange)="basket[f.id] = $event"></flight-card>-->
+    <!--<flight-card [item]="f" [(selected)]="basket[f.id]" (edit)="flightToEdit = f"></flight-card>-->
+    <flight-card [item]="f" [(selected)]="basket[f.id]"></flight-card>
   </div>
 </div>
 
@@ -124,4 +124,7 @@
   <button (click)="save()" class="btn btn-default">Save</button>
 </div>-->
 
+
+<!--
 <flight-edit [flight]="flightToEdit" (flightChange)="updateFlight($event)"></flight-edit>
+-->

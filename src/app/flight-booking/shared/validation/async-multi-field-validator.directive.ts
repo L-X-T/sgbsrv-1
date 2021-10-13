@@ -2,7 +2,8 @@ import { Directive, Input } from '@angular/core';
 import { AbstractControl, FormGroup, NG_ASYNC_VALIDATORS, ValidationErrors } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
-import { FlightService } from '../../flight-search/flight.service';
+
+import { FlightService } from '../services/flight.service';
 
 @Directive({
   selector: 'form[asyncMulti]',

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
-import { FlightService } from '../flight-search/flight.service';
 import { Flight } from '../../entities/flight';
+import { FlightService } from '../shared/services/flight.service';
 import { validateCity } from '../shared/validation/city-validator';
 import { validateRoundTrip } from '../shared/validation/round-trip-validator';
 
@@ -24,12 +24,16 @@ export class FlightEditComponent implements OnChanges, OnInit {
 
   message = '';
 
+  private isInitialized: Boolean;
+
   constructor(private fb: FormBuilder, private flightService: FlightService, private route: ActivatedRoute) {}
 
   ngOnChanges(): void {
-    if (this.editForm && this.flight) {
-      this.editForm.patchValue(this.flight);
+    if (!this.isInitialized) {
+      this.editFormInit();
     }
+
+    this.patchFormValue();
   }
 
   ngOnInit(): void {
@@ -51,7 +55,11 @@ export class FlightEditComponent implements OnChanges, OnInit {
       date: ['', [Validators.required, Validators.minLength(33), Validators.maxLength(33)]]
     });
 
-    this.editForm.validator = validateRoundTrip;
+    if (!this.isInitialized) {
+      this.editFormInit();
+    }
+
+    this.route.params.subscribe((params) => this.onRouteParams(params));
   }
 
   save(): void {
@@ -68,11 +76,48 @@ export class FlightEditComponent implements OnChanges, OnInit {
 
         this.flightChange.emit(flight);
 
-        this.message = 'Success!';
+        this.flight = flight;
+        this.message = 'Success saving!';
+        this.patchFormValue();
       },
       error: (errResponse) => {
         console.error('Error', errResponse);
-        this.message = 'Error!';
+        this.message = 'Error saving!';
+      }
+    });
+  }
+
+  private editFormInit() {
+    this.editForm = this.fb.group({
+      id: [1, [Validators.required]],
+      from: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), validateCity]],
+      to: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), validateCity]],
+      date: ['', [Validators.required, Validators.minLength(33), Validators.maxLength(33)]]
+    });
+
+    this.editForm.validator = validateRoundTrip;
+
+    this.isInitialized = true;
+  }
+
+  private patchFormValue() {
+    if (this.editForm && this.flight) {
+      this.editForm.patchValue(this.flight);
+    }
+  }
+
+  private onRouteParams(params: Params) {
+    this.id = params['id'];
+    this.showDetails = params['showDetails'];
+
+    this.flightService.findById(this.id).subscribe({
+      next: (flight) => {
+        this.flight = flight;
+        this.message = 'Success loading!';
+        this.patchFormValue();
+      },
+      error: (err) => {
+        this.message = 'Error Loading!';
       }
     });
   }

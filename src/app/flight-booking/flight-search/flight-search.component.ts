@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Flight } from '../../entities/flight';
-import { FlightService } from './flight.service';
+import { FlightService } from '../shared/services/flight.service';
 import { pattern } from '../../shared/global';
 
 @Component({

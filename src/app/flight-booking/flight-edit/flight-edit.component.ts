@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ import { validateRoundTrip } from '../shared/validation/round-trip-validator';
   templateUrl: './flight-edit.component.html',
   styleUrls: ['./flight-edit.component.css']
 })
-export class FlightEditComponent implements OnChanges, OnInit {
+export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
   @Input() flight: Flight;
 
   @Output() flightChange = new EventEmitter<Flight>();
@@ -30,7 +30,10 @@ export class FlightEditComponent implements OnChanges, OnInit {
 
   constructor(private fb: FormBuilder, private flightService: FlightService, private route: ActivatedRoute, private router: Router) {}
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.warn('[FlightEditComponent] Changes!');
+    console.log(changes);
+
     if (!this.isInitialized) {
       this.editFormInit();
     }
@@ -39,6 +42,8 @@ export class FlightEditComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
+    console.warn('[FlightEditComponent] Good morning!');
+
     this.route.params.subscribe((params) => {
       this.id = params['id'];
       this.showDetails = params['showDetails'];
@@ -62,6 +67,10 @@ export class FlightEditComponent implements OnChanges, OnInit {
     }
 
     this.route.params.subscribe((params) => this.onRouteParams(params));
+  }
+
+  ngOnDestroy(): void {
+    console.warn('[FlightEditComponent] Bye bye!');
   }
 
   save(): void {

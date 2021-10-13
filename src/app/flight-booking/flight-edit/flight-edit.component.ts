@@ -26,7 +26,7 @@ export class FlightEditComponent implements OnChanges, OnInit {
 
   message = '';
 
-  private isInitialized: Boolean;
+  private isInitialized: boolean;
 
   constructor(private fb: FormBuilder, private flightService: FlightService, private route: ActivatedRoute, private router: Router) {}
 
@@ -94,7 +94,7 @@ export class FlightEditComponent implements OnChanges, OnInit {
           }, 3000);
         },
         error: (errResponse) => {
-          console.error('Error', errResponse);
+          console.error(errResponse);
           this.message = 'Error saving!';
         }
       });
@@ -129,7 +129,8 @@ export class FlightEditComponent implements OnChanges, OnInit {
         this.message = 'Success loading!';
         this.patchFormValue();
       },
-      error: (err) => {
+      error: (errResponse) => {
+        console.error(errResponse);
         this.message = 'Error Loading!';
       }
     });

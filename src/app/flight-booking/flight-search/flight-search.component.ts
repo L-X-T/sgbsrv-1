@@ -58,7 +58,7 @@ export class FlightSearchComponent {
     this.flights = this.flights.map((flight) => (flight.id === updatedFlight.id ? updatedFlight : flight));
   }
 
-  onEdit(id: number) {
+  onEdit(id: number): void {
     this.router.navigate(['/flight-edit', id, { showDetails: true }]);
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlightService } from '../flight-search/flight.service';
 import { Flight } from '../../entities/flight';
 import { validateCity } from '../shared/validation/city-validator';
+import { validateRoundTrip } from '../shared/validation/round-trip-validator';
 
 @Component({
   selector: 'flight-edit',
@@ -37,6 +38,8 @@ export class FlightEditComponent implements OnChanges, OnInit {
       ],
       date: ['', [Validators.required, Validators.minLength(33), Validators.maxLength(33)]]
     });
+
+    this.editForm.validator = validateRoundTrip;
   }
 
   save(): void {

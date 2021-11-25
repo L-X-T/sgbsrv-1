@@ -9,3 +9,5 @@
 <div *ngIf="errors && errors['pattern']"> {{ fieldLabel }} has invalid input. </div>
 
 <div *ngIf="errors && errors['city']"> {{ fieldLabel }} needs to be a city. </div>
+
+<div *ngIf="errors && errors['asyncCity']"> Async: No flights found with that "{{ fieldLabel }}".  </div>

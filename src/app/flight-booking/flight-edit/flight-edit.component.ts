@@ -27,8 +27,14 @@ export class FlightEditComponent implements OnChanges, OnInit {
   ngOnInit(): void {
     this.editForm = this.fb.group({
       id: [1, [Validators.required]],
-      from: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), validateCity]],
-      to: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), validateCity]],
+      from: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.maxLength(15), validateCity(['Graz', 'Wien', 'Hamburg', 'Berlin'])]
+      ],
+      to: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.maxLength(15), validateCity(['Graz', 'Wien', 'Hamburg', 'Berlin'])]
+      ],
       date: ['', [Validators.required, Validators.minLength(33), Validators.maxLength(33)]]
     });
   }

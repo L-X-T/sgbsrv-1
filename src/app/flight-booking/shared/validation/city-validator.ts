@@ -1,15 +1,17 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-export function validateCity(c: AbstractControl) {
-  const validCities: string[] = ['Graz', 'Wien', 'Hamburg', 'Berlin'];
-  if (c.value && validCities.indexOf(c.value) === -1) {
-    return {
-      city: {
-        actualValue: c.value,
-        validCities: validCities
-      }
-    };
-  }
+export function validateCity(validCities: string[]): ValidatorFn {
+  // const validCities: string[] = ['Graz', 'Wien', 'Hamburg', 'Berlin'];
+  return (c: AbstractControl) => {
+    if (c.value && validCities.indexOf(c.value) === -1) {
+      return {
+        city: {
+          actualValue: c.value,
+          validCities: validCities
+        }
+      };
+    }
 
-  return null;
+    return null;
+  };
 }

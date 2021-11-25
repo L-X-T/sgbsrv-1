@@ -8,9 +8,8 @@ describe('FlightValidationErrorsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FlightValidationErrorsComponent ]
-    })
-    .compileComponents();
+      declarations: [FlightValidationErrorsComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

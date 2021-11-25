@@ -4,7 +4,7 @@
   </div>
 
   <div class="content">
-    <form #form="ngForm" [roundTrip]="['from','to']">
+    <form #form="ngForm" [roundTrip]="['from','to']" [asyncMulti]="['from','to']">
       <div class="form-group">
         <label>From:</label>
         <input [(ngModel)]="from"
@@ -40,11 +40,16 @@
       <flight-validation-errors [errors]="form?.controls['to']?.errors" [fieldLabel]="'To'">
       </flight-validation-errors>
 
+      <div *ngIf="form?.pending">... Executing Async Multi Field Validator ...</div>
+
       <div *ngIf="form?.hasError('roundTrip')" style="color: #b30000">Round trips are not allowed!</div>
+      <div *ngIf="form?.hasError('asyncMulti')" style="color: #b30000">
+        No trips were found from {{ form.errors['from'] }} to {{ form.errors['to']  }}!
+      </div>
 
       <div class="form-group">
         <button
-          [disabled]="!to || !from || form.invalid"
+          [disabled]="!to || !from || form.invalid || form.pending"
           (click)="search()"
           class="btn btn-default">Search</button>
       </div>

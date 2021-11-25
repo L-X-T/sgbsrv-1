@@ -328,11 +328,10 @@ You can use the following procedure as a guide:
         [...]
 
         validate(c: AbstractControl): Observable<ValidationErrors | null> {
-            return this.flightService
-                       .find(c.value, '').pipe(
-                            map(flights => (flights.length) > 0 ? {} : {asyncCity: true}),
-                            delay(4000); // <-- delay; can be removed later...
-                       );
+            return this.flightService.find(c.value, '').pipe(
+                map(flights => (flights.length) > 0 ? {} : {asyncCity: true}),
+                delay(4000) // <-- delay; can be removed later...
+            );
         }
 
     }

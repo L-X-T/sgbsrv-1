@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Flight } from '../../entities/flight';
 import { FlightService } from './flight.service';
+import { pattern } from '../../shared/global';
 
 @Component({
   selector: 'flight-search',
@@ -13,6 +14,7 @@ export class FlightSearchComponent {
   to = 'Hamburg';
   flights: Flight[] = [];
   flightToEdit: Flight;
+  pattern = pattern;
 
   message: string;
 

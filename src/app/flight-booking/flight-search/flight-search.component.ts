@@ -46,4 +46,11 @@ export class FlightSearchComponent {
       }
     });
   }*/
+
+  updateFlight(updatedFlight: Flight): void {
+    // console.warn('FlightSearchComponent - updateFlight()');
+    // console.log(updatedFlight);
+
+    this.flights = this.flights.map((flight) => (flight.id === updatedFlight.id ? updatedFlight : flight));
+  }
 }

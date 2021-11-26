@@ -1,1 +1,1 @@
-export const pattern = '[a-zA-ZäöüÄÖÜß ]';
+export const pattern = '[a-zA-ZäöüÄÖÜß ]*';

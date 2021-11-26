@@ -1,8 +1,8 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidationErrors } from '@angular/forms';
 
-export function validateRoundTrip(formGroup: FormGroup): object {
-  let fromCtrl = formGroup.controls['from'];
-  let toCtrl = formGroup.controls['to'];
+export function validateRoundTrip(formGroup: FormGroup): ValidationErrors | null {
+  const fromCtrl = formGroup.controls['from'];
+  const toCtrl = formGroup.controls['to'];
 
   if (!fromCtrl || !toCtrl) return null;
 

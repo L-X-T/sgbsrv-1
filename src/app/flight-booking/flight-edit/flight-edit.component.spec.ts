@@ -8,9 +8,8 @@ describe('FlightEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FlightEditComponent ]
-    })
-    .compileComponents();
+      declarations: [FlightEditComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
